@@ -4,6 +4,7 @@
  */
 package gui;
 
+import java.awt.event.KeyEvent;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import javax.swing.JOptionPane;
@@ -55,6 +56,12 @@ public class PenentuJumlahHari extends javax.swing.JFrame {
         jLabel1.setText("Tahun");
 
         jLabel2.setText("Bulan");
+
+        txtTahun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                txtTahunKeyTyped(evt);
+            }
+        });
 
         cmbBulan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "November", "Desember" }));
 
@@ -253,6 +260,18 @@ public class PenentuJumlahHari extends javax.swing.JFrame {
         txtTahun.setText("");
         cmbBulan.setSelectedItem("Januari");
     }//GEN-LAST:event_btnHapusActionPerformed
+
+    private void txtTahunKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtTahunKeyTyped
+        char c = evt.getKeyChar();
+        if (! ((Character.isDigit(c) ||
+                (c == KeyEvent.VK_BACK_SPACE) ||
+                (c == KeyEvent.VK_DELETE))
+               )) {
+            getToolkit().beep();
+            JOptionPane.showMessageDialog(null, "Masukkan hanya angka 0-9");
+            evt.consume();
+        } 
+    }//GEN-LAST:event_txtTahunKeyTyped
 
     /**
      * @param args the command line arguments
